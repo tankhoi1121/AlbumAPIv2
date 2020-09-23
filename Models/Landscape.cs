@@ -16,10 +16,11 @@ namespace AlbumAPIv2.Models
 
         private Landscape()
         {
-            _landScapeList.Add("http://localhost:4999/api/album/landscape/991.jpg");
-            _landScapeList.Add("http://localhost:4999/api/album/landscape/9911.jpg");
-            _landScapeList.Add("http://localhost:4999/api/album/landscape/9591.jpg");
-            _landScapeList.Add("http://localhost:4999/api/album/landscape/691.jpg");
+            var prefix = Environment.GetEnvironmentVariable("prefix");
+            _landScapeList.Add(prefix + "api/album/landscape/991.jpg");
+            _landScapeList.Add(prefix + "api/album/landscape/9911.jpg");
+            _landScapeList.Add(prefix + "api/album/landscape/9591.jpg");
+            _landScapeList.Add(prefix + "api/album/landscape/691.jpg");
 
         }
 
