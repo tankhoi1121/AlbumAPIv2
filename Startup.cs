@@ -42,6 +42,7 @@ namespace AlbumAPIv2
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseStaticFiles();
         }
     }
 }

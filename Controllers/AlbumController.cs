@@ -18,9 +18,32 @@ namespace AlbumAPIv2.Controllers
         {
             _albumService = new AlbumService();
         }
+        [HttpGet]
         public IEnumerable<string> Index()
         {
+            var res = new List<string>();
+            res.AddRange(_albumService.GetAlbum("Landscape"));
+            res.AddRange(_albumService.GetAlbum("People"));
+            res.AddRange(_albumService.GetAlbum("Tech"));
+            return res;
+        }
+
+        [HttpGet("landscape")]
+        public IEnumerable<string> LandscapeList()
+        {
             return _albumService.GetAlbum("Landscape");
+        }
+
+        [HttpGet("people")]
+        public IEnumerable<string> PeopleList()
+        {
+            return _albumService.GetAlbum("People");
+        }
+
+        [HttpGet("tech")]
+        public IEnumerable<string> TechList()
+        {
+            return _albumService.GetAlbum("Tech");
         }
     }
 }

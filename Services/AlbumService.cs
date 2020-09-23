@@ -13,6 +13,8 @@ namespace AlbumAPIv2.Services
         {
             AlbumFactory _albumFactory = AlbumFactory.Instance;
             albums.Add(_albumFactory.CreateAlbum("Landscape"));
+            albums.Add(_albumFactory.CreateAlbum("People"));
+            albums.Add(_albumFactory.CreateAlbum("Tech"));
         }
         public bool IsChange(List<string> album)
         {
@@ -34,6 +36,16 @@ namespace AlbumAPIv2.Services
             {
                 this.IsChange(albums[0].GetAll());
                 return albums[0].GetAll();
+            }
+            else if (typeAlbum == "People")
+            {
+                this.IsChange(albums[1].GetAll());
+                return albums[1].GetAll();
+            }
+            else if (typeAlbum == "Tech")
+            {
+                this.IsChange(albums[2].GetAll());
+                return albums[2].GetAll();
             }
             return null;
         }

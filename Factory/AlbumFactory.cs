@@ -31,6 +31,10 @@ namespace AlbumAPIv2.Factory
             {
                 case "Landscape":
                     return Landscape.Instance;
+                case "People":
+                    return People.Instance;
+                case "Tech":
+                    return Tech.Instance;
             }
             return null;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace AlbumAPIv2.Models
 {
@@ -17,11 +18,14 @@ namespace AlbumAPIv2.Models
         private Landscape()
         {
             var prefix = Environment.GetEnvironmentVariable("prefix");
-            _landScapeList.Add(prefix + "api/album/landscape/991.jpg");
-            _landScapeList.Add(prefix + "api/album/landscape/9911.jpg");
-            _landScapeList.Add(prefix + "api/album/landscape/9591.jpg");
-            _landScapeList.Add(prefix + "api/album/landscape/691.jpg");
-
+            var ListLandscapeExample = Directory
+               .GetFiles
+               (@"C:\Users\khoin\source\repos\AlbumAPIv2\AlbumAPIv2\wwwroot\Landscape\");
+            string category = "landscape";
+            foreach (var path in ListLandscapeExample)
+            {
+                _landScapeList.Add(prefix + category + "/" + Path.GetFileName(path));
+            }
         }
 
         public static Landscape Instance
