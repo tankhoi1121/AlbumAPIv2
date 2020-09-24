@@ -51,11 +51,11 @@ namespace AlbumAPIv2
             {
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
-            app.UseMvc();
             app.UseStaticFiles();
             app.UseCors(MyAllowSpecificOrigins);
+            app.UseHttpsRedirection();
+            app.UseMvc();
+
         }
     }
 }

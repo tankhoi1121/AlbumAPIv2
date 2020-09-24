@@ -21,7 +21,7 @@ namespace AlbumAPIv2.Models
             var PeopleListExample = Directory
                .GetFiles
                (@"C:\Users\khoin\source\repos\AlbumAPIv2\AlbumAPIv2\wwwroot\People\");
-            string category = "landscape";
+            string category = "people";
             foreach (var path in PeopleListExample)
             {
                 _peopleList.Add(prefix + category + "/" + Path.GetFileName(path));
