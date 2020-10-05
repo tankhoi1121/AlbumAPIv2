@@ -4,13 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using AlbumAPIv2.Factory;
 using AlbumAPIv2.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+
 namespace AlbumAPIv2.Services
 {
     public class AlbumService : IAlbumService
     {
         private List<IAlbum> albums = new List<IAlbum>();
-        public AlbumService()
+        private IHostingEnvironment _enviroment;
+        public AlbumService(IHostingEnvironment env)
         {
+            _enviroment = env;
             AlbumFactory _albumFactory = AlbumFactory.Instance;
             albums.Add(_albumFactory.CreateAlbum("Landscape"));
             albums.Add(_albumFactory.CreateAlbum("People"));
@@ -48,6 +54,26 @@ namespace AlbumAPIv2.Services
                 return albums[2].GetAll();
             }
             return null;
+        }
+
+        public string Upload(IFormFile formFile, string subDir)
+        {
+            string s;
+            if (formFile != null || formFile.Length != 0)
+            {
+                using (FileStream fs =
+                    new FileStream((_enviroment.WebRootPath + "/" + subDir + "/" + formFile.FileName), FileMode.Create))
+                {
+                    formFile.CopyToAsync(fs);
+
+                }
+                s = "OK";
+            }
+            else
+            {
+                s = "Not OK";
+            }
+            return s;
         }
     }
 }

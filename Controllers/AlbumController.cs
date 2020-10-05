@@ -19,7 +19,7 @@ namespace AlbumAPIv2.Controllers
         private IHostingEnvironment _enviroment;
         public AlbumController(IHostingEnvironment env)
         {
-            _albumService = new AlbumService();
+            _albumService = new AlbumService(env);
             _enviroment = env;
         }
         [HttpGet]
@@ -54,22 +54,23 @@ namespace AlbumAPIv2.Controllers
         [HttpPost("upload")]
         public string OnPostUpload([FromForm(Name = "file")] IFormFile file, [FromForm] string subDir)
         {
-            string s;
-            if (file != null || file.Length != 0)
-            {
-                using (FileStream fs =
-                    new FileStream((_enviroment.WebRootPath + "/" + subDir + "/" + file.FileName + ".jpg"), FileMode.Create))
-                {
-                    file.CopyToAsync(fs);
+            //string s;
+            //if (file != null || file.Length != 0)
+            //{
+            //    using (FileStream fs =
+            //        new FileStream((_enviroment.WebRootPath + "/" + subDir + "/" + file.FileName + ".jpg"), FileMode.Create))
+            //    {
+            //        file.CopyToAsync(fs);
 
-                }
-                s = "OK";
-            }
-            else
-            {
-                s = "Not OK";
-            }
-            return s;
+            //    }
+            //    s = "OK";
+            //}
+            //else
+            //{
+            //    s = "Not OK";
+            //}
+            //return s;
+            return _albumService.Upload(file, subDir);
         }
     }
 }
