@@ -64,7 +64,7 @@ namespace AlbumAPIv2.Services
                 using (FileStream fs =
                     new FileStream((_enviroment.WebRootPath + "/" + subDir + "/" + formFile.FileName), FileMode.Create))
                 {
-                    formFile.CopyToAsync(fs);
+                    formFile.CopyTo(fs);
 
                 }
                 s = "OK";
